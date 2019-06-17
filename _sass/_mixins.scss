@@ -1,0 +1,49 @@
+$height-breakpoints: (
+  xs: 0,
+  sm: 568px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin height-breakpoint-up($name, $breakpoints: $height-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-height: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin height-breakpoint-down($name, $breakpoints: $height-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-height: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@each $breakpoint in map-keys($height-breakpoints) {
+  @include height-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $height-breakpoints);
+
+    .dh#{$infix}-none         { display: none !important; }
+    .dh#{$infix}-inline       { display: inline !important; }
+    .dh#{$infix}-inline-block { display: inline-block !important; }
+    .dh#{$infix}-table        { display: table !important; }
+    .dh#{$infix}-block        { display: block !important; }
+    .dh#{$infix}-table-row    { display: table-row !important; }
+    .dh#{$infix}-table-cell   { display: table-cell !important; }
+    .dh#{$infix}-flex         { display: flex !important; }
+    .dh#{$infix}-inline-flex  { display: inline-flex !important; }
+  }
+}
