@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<main role="main">
+  <article class="post tag-blog tag-organizations">
+    {{#if page.feature_image}}
+      <figure class="feature">
+        <img src="{{ post.feature_image }}">
+      </figure>
+    {{/if}}
+    <div class="container">
+      <header class="col-lg-8 offset-lg-2">
+        <h1>
+          {{ page.title }}
+        </h1>
+        <p>
+          <medium>Published on {{ page.date | date_to_string: "ordinal", "US" }} by Ryan McKay-Fleming</medium>
+        </p>
+      </header>
+      <section class="content col-lg-8 offset-lg-2">
+        {{ content }}
+      </section>
+    </div>
+  </article>
+</main>
+
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"4c9ed5cdf344a8638fd12f2b2","lid":"49fa6afd46","uniqueMethods":true}) })</script>
